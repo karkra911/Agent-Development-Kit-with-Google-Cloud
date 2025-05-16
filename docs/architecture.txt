@@ -1,0 +1,54 @@
+Multi-Agent System Architecture for Data Analysis and Insights
+===============================================================
+
+This project uses the Agent Development Kit (ADK) to orchestrate multiple
+autonomous agents, each with a specialized responsibility. The agents
+collaborate to analyze data from ingestion to presentation.
+
+───────────────────────────────────────────────────────────────
+
+                    [ External Data Sources ]
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │   IngestionAgent     │
+                     │ (Collects raw data)  │
+                     └──────────────────────┘
+                                │
+                                ▼
+                 [ Raw Data in GCS or BigQuery ]
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │     QueryAgent       │
+                     │ (Fetches relevant    │
+                     │  records using SQL)  │
+                     └──────────────────────┘
+                                │
+                                ▼
+                     [ Filtered Query Results ]
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │    InsightAgent      │
+                     │ (Analyzes trends &   │
+                     │  extracts insights)  │
+                     └──────────────────────┘
+                                │
+                                ▼
+                         [ Insights Output ]
+                                │
+                                ▼
+                     ┌──────────────────────┐
+                     │ PresentationAgent    │
+                     │ (Logs, Reports, or   │
+                     │  Dashboards)         │
+                     └──────────────────────┘
+
+───────────────────────────────────────────────────────────────
+
+Agent Communication:
+- Agents interact indirectly via shared storage (e.g., BigQuery, GCS)
+- Configuration is centralized in config/config.json
+- Optional: agents can communicate using Pub/Sub or RPC in future versions
+

@@ -1,0 +1,29 @@
+{
+  "project_id": "your-gcp-project-id",
+  "bigquery": {
+    "dataset": "agent_dataset",
+    "raw_table": "raw_data",
+    "processed_table": "processed_insights"
+  },
+  "storage": {
+    "bucket_name": "agent-data-bucket",
+    "input_path": "data/input/",
+    "output_path": "data/output/"
+  },
+  "agents": {
+    "ingestion": {
+      "source_url": "https://example.com/data.csv",
+      "fetch_interval_minutes": 30
+    },
+    "query": {
+      "query_template": "SELECT * FROM `agent_dataset.raw_data` WHERE condition = TRUE"
+    },
+    "insight": {
+      "analysis_type": "trend_detection"
+    },
+    "presentation": {
+      "output_format": "log",
+      "enable_email": false
+    }
+  }
+}
